@@ -1,7 +1,10 @@
 class LoginData:
-    NAME = "Алена"
-    LOGIN = "alenaibragimova1111@yandex.ru"
-    PASSWORD = "123456"
+    LOGIN_DATA = {
+        "name" : "Алена",
+        "login" : "alenaibragimova1111@yandex.ru",
+        "password" : "123456"
+    }
+
 
 class BasePageData:
     BASE_PAGE_URL = "https://stellarburgers.nomoreparties.site/"
@@ -9,7 +12,7 @@ class BasePageData:
     FEED_PAGE_URL = f"{BASE_PAGE_URL}feed"
     REGISTER_PAGE_URL = f"{BASE_PAGE_URL}register"
     FORGOT_PASSWORD_PAGE_URL = f"{BASE_PAGE_URL}forgot-password"
-    RESET_PASSWORD_PAGE_URL = f"{BASE_PAGE_URL}reset-password"
+    #RESET_PASSWORD_PAGE_URL = f"{BASE_PAGE_URL}reset-password"
 
 
 

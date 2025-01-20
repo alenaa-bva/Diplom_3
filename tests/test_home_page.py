@@ -2,7 +2,8 @@ import pytest
 
 from data import BasePageData
 from pages.home_page import HomePage
-from xpath_data import HomePagePaths
+from pages.login_page import LoginPage
+from xpath_data import HomePagePaths, LoginPagePaths
 
 
 class TestHomePage:
@@ -114,7 +115,7 @@ class TestHomePage:
         # HomePagePaths.first_sauce_ingredient,
         HomePagePaths.first_filling_ingredient
     ])
-    def test_add_ingredients_to_the_order_by_move_to_the_basket(
+    def test_add_ingredients_by_type_to_the_basket(
             self,
             driver,
             ingredient
@@ -124,8 +125,13 @@ class TestHomePage:
 
         assert is_sum_more_than_zero, "Сумма в корзине не стала больше нуля после добавления ингредиента"
 
-    def test_place_an_order_by_authorized_user(self):
-        pass
+
+    def test_place_an_order_by_authorized_user(self, driver):
+
+        home_page_obj = HomePage(driver)
+        order_number = home_page_obj.place_an_order_by_authorized_user(driver)
+
+        assert order_number is not None, "Заказ не оформлен, номер заказа не найден"
 
     def test_place_an_order_by_unauthorized_user(self):
         pass

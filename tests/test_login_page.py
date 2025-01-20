@@ -1,19 +1,13 @@
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-
-from data import LoginData
-from xpath_data import HomePagePaths, RegistrationPagePaths, LoginPagePaths, ForgotPasswordPagePaths
-
-# # вспомогательные функции
-# def wait_element_to_be_clickable(driver, locator, timeout=5):
-#     return WebDriverWait(driver, timeout).until(expected_conditions.element_to_be_clickable(locator))
-#
-# def wait_element_to_be_visible(driver, locator, timeout=5):
-#     return WebDriverWait(driver, timeout).until(expected_conditions.visibility_of_element_located(locator))
+from pages.home_page import HomePage
+from pages.login_page import LoginPage
+from tests.conftest import driver
 
 
-#тесты
 class TestLoginPage:
+
+    #переход по клику на конструктор
+
+
 
     # def test_login_from_go_to_account_button(
     #         self,

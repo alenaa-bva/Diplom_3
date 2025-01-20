@@ -15,7 +15,7 @@ class FeedPage(BasePage):
         driver.get(page)  # здесь передаем страницы через параметризацию
 
         # нажимаем на лого
-        self.click_on_the_element(BasePagePaths.feed_button)
+        self.click_on_the_element(driver, BasePagePaths.feed_button)
 
         # возвращаем текст хедера страницы
-        return self.wait_element_to_be_visible(driver, (By.XPATH, FeedPagePaths.feed_header)).text
+        return self.wait_element_to_be_visible(driver, (FeedPagePaths.feed_header).text)
