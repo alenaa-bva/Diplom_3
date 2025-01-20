@@ -1,4 +1,4 @@
-### Проект автоматизации тестирования сервиса Stellar Burgers
+### Дипломный проект. Задание 3: Selenium -тесты
 
 ## Описание
 
@@ -20,7 +20,12 @@
    
    Firefox https://www.selenium.dev/documentation/getting_started/installing_browser_drivers/
 
+* Установить Allure-pytest
 
+    ```
+   pip install allure-pytest
+   ```
+  
 * Установить Selenium
    ```
    pip install selenium
@@ -37,4 +42,11 @@
 * Команда для запуска всех тестов:
    ```
     pytest -v
+   ```
+  
+## Запуск Allure
+
+* Генерация отчета
+   ```
+    pytest --alluredir=allure_results
    ```

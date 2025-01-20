@@ -1,6 +1,6 @@
 from data import BasePageData, LoginData
 from pages.base_page import BasePage
-from xpath_data import ForgotPasswordPagePaths, BasePagePaths
+from xpath_data import ForgotPasswordPagePaths
 from tests.conftest import driver
 
 
@@ -11,7 +11,6 @@ class ResetPasswordPage(BasePage):
         self.driver = driver
 
     def move_on_the_reset_password_page(self, driver):
-
         driver.get(BasePageData.FORGOT_PASSWORD_PAGE_URL)
 
         self.fill_the_field(driver, ForgotPasswordPagePaths.fp_email_input, LoginData.LOGIN_DATA["login"])
@@ -19,9 +18,7 @@ class ResetPasswordPage(BasePage):
 
         return self.wait_element_to_be_visible(driver, ForgotPasswordPagePaths.fp_password_input)
 
-
     def make_a_password_visible_by_eye_button(self, driver):
-
         driver.get(BasePageData.FORGOT_PASSWORD_PAGE_URL)
 
         self.fill_the_field(driver, ForgotPasswordPagePaths.fp_email_input, LoginData.LOGIN_DATA["login"])
@@ -30,4 +27,3 @@ class ResetPasswordPage(BasePage):
         self.click_on_the_element(driver, ForgotPasswordPagePaths.fp_eye_button)
 
         return self.wait_element_to_be_visible(driver, ForgotPasswordPagePaths.fp_password_field_shows_password)
-
