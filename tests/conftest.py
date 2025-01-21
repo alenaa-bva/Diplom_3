@@ -1,27 +1,14 @@
 import pytest
 from selenium import webdriver
 
-
-@pytest.fixture()
-def chrome():
-    driver = webdriver.Chrome()
-    return driver
-
-@pytest.fixture()
-def firefox():
-    driver = webdriver.Firefox()
-    return driver
-
 @pytest.fixture(params=["chrome", "firefox"])
-def driver(request, chrome, firefox):
+def driver(request):
     if request.param == 'chrome':
-        webdriver = chrome
-        webdriver.maximize_window()
-        firefox.quit()
+        driver = webdriver.Chrome()
+        driver.maximize_window()
     else:
-        webdriver = firefox
-        webdriver.maximize_window()
-        chrome.quit()
+        driver = webdriver.Firefox()
+        driver.maximize_window()
 
-    yield webdriver
-    webdriver.quit()
+    yield driver
+    driver.quit()

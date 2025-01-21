@@ -2,7 +2,7 @@ import pytest
 
 from data import BasePageData
 from pages.home_page import HomePage
-from xpath_data import HomePagePaths
+from locators import HomePagePaths
 
 
 class TestHomePage:
