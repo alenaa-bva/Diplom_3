@@ -1,8 +1,8 @@
 import pytest
 
 from data import BasePageData
-from pages.feed_page import FeedPage
-from pages.home_page import HomePage
+from pages.feed_page.feed_page import FeedPage
+from pages.home_page.home_page import HomePage
 
 
 class TestFeedPage:

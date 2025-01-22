@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from data import BasePageData
-from pages.base_page import BasePage
+from pages.base_page.base_page import BasePage
 from tests.conftest import driver
 from locators import HomePagePaths, BasePagePaths
 
@@ -13,11 +13,11 @@ class HomePage(BasePage):
         super().__init__(driver)
         self.driver = driver
 
-    def move_from_other_page_to_constructor_by_logo(self, driver, page):
-        driver.get(page)
+    def move_from_other_page_to_constructor_by_logo(self, page):
+        self.driver.get(page)
 
         # нажимаем на лого
-        self.click_on_the_element(driver, BasePagePaths.stellar_burgers_logo)
+        self.click_on_the_element(BasePagePaths.stellar_burgers_logo)
 
         # возвращаем текст хедера страницы
         return self.wait_element_to_be_visible(HomePagePaths.collect_a_burger_header).text
@@ -26,7 +26,7 @@ class HomePage(BasePage):
         driver.get(BasePageData.BASE_PAGE_URL)
 
         # кликнуть на ингредиент
-        self.click_on_the_element(driver, ingredient)
+        self.click_on_the_element(ingredient)
 
         # возвращаем заголовок Детали ингридиента
         return self.wait_element_to_be_visible(HomePagePaths.ingredient_details_modal_header).text
@@ -35,10 +35,10 @@ class HomePage(BasePage):
         driver.get(BasePageData.BASE_PAGE_URL)
 
         # кликнуть на ингредиент
-        self.click_on_the_element(driver, ingredient)
+        self.click_on_the_element(ingredient)
 
         # кликнуть на крестик
-        self.click_on_the_element(driver, HomePagePaths.close_details_button)
+        self.click_on_the_element(HomePagePaths.close_details_button)
 
         # ждем закрытия модалки и возвращаем результат True или False
         return self.wait_element_not_visible(HomePagePaths.ingredient_details_modal_header)
@@ -47,7 +47,7 @@ class HomePage(BasePage):
         driver.get(BasePageData.BASE_PAGE_URL)
 
         # перетащить ингредиент
-        self.drag_and_drop_element(ingredient, HomePagePaths.burger_basket_section, driver)
+        self.drag_and_drop_element(ingredient, HomePagePaths.burger_basket_section)
 
         # ждем пока итоговая сумма не станет > 0
         return WebDriverWait(driver, timeout=5).until(
@@ -65,10 +65,10 @@ class HomePage(BasePage):
 
         # добавляем ингредиенты ка заказу
         for ingredient in ingredients:
-            self.drag_and_drop_element(ingredient, HomePagePaths.burger_basket_section, driver)
+            self.drag_and_drop_element(ingredient, HomePagePaths.burger_basket_section)
 
         # размещаем заказ
-        self.click_on_the_element(driver, HomePagePaths.place_an_order_button)
+        self.click_on_the_element(HomePagePaths.place_an_order_button)
         # ждем, пока на модалке пропадет номер 9999
         self.wait_element_not_visible(HomePagePaths.order_number_9999)
 

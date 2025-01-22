@@ -1,4 +1,4 @@
-from pages.reset_password_page import ResetPasswordPage
+from pages.reset_password_page.reset_password_page import ResetPasswordPage
 
 
 class TestResetPasswordPage:

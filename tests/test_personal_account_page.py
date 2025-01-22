@@ -1,6 +1,6 @@
-from pages.personal_account_page import PersonalAccountPage
+from pages.personal_account_page.personal_account_page import PersonalAccountPage
 
-from pages.home_page import HomePage
+from pages.home_page.home_page import HomePage
 from tests.conftest import driver
 
 

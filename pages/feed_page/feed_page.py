@@ -1,5 +1,5 @@
 from data import BasePageData
-from pages.base_page import BasePage
+from pages.base_page.base_page import BasePage
 from locators import BasePagePaths, FeedPagePaths, HomePagePaths, PersonalAccountPagePaths
 
 

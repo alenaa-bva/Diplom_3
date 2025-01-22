@@ -1,7 +1,7 @@
 import pytest
 
 from data import BasePageData
-from pages.home_page import HomePage
+from pages.home_page.home_page import HomePage
 from locators import HomePagePaths
 
 
@@ -19,7 +19,7 @@ class TestHomePage:
             page
     ):
         home_page_obj = HomePage(driver)
-        collect_a_burger_header_text = home_page_obj.move_from_other_page_to_constructor_by_logo(driver, page)
+        collect_a_burger_header_text = home_page_obj.move_from_other_page_to_constructor_by_logo(page)
 
         assert collect_a_burger_header_text == 'Соберите бургер'
 
