@@ -6,7 +6,7 @@ class LoginData:
     }
 
 
-class BasePageData:
+class UrlLib:
     BASE_PAGE_URL = "https://stellarburgers.nomoreparties.site/"
     LOGIN_PAGE_URL = f"{BASE_PAGE_URL}login"
     FEED_PAGE_URL = f"{BASE_PAGE_URL}feed"

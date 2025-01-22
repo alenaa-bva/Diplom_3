@@ -1,4 +1,4 @@
-from data import BasePageData
+from data import UrlLib
 from pages.base_page.base_page import BasePage
 from tests.conftest import driver
 from locators import LoginPagePaths, HomePagePaths, BasePagePaths, PersonalAccountPagePaths
@@ -17,7 +17,7 @@ class PersonalAccountPage(BasePage):
         return self.wait_element_to_be_visible(PersonalAccountPagePaths.profile_tab).text
 
     def move_to_the_personal_account_by_unauthorized_user(self, driver) -> str:
-        driver.get(BasePageData.BASE_PAGE_URL)
+        driver.get(UrlLib.BASE_PAGE_URL)
         self.click_on_the_element(BasePagePaths.personal_button)
 
         return self.wait_element_to_be_visible(LoginPagePaths.login_header).text

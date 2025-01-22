@@ -1,4 +1,4 @@
-from data import BasePageData
+from data import UrlLib
 from helpers import generate_register_data
 from locators import RegistrationPagePaths
 from pages.base_page.base_page import BasePage
@@ -10,9 +10,10 @@ class RegistrationPage(BasePage):
         self.driver = driver
 
     def register(self) -> dict:
+
         register_data = generate_register_data()
 
-        self.driver.get(BasePageData.REGISTER_PAGE_URL)
+        self.driver.get(UrlLib.REGISTER_PAGE_URL)
 
         self.fill_the_field(RegistrationPagePaths.rp_name_input, register_data["name"])
         self.fill_the_field(RegistrationPagePaths.rp_email_input, register_data["login"])

@@ -1,17 +1,18 @@
 import pytest
 
-from data import BasePageData
+from data import UrlLib
 from pages.home_page.home_page import HomePage
 from locators import HomePagePaths
+from pages.login_page.login_page import LoginPage
 
 
 class TestHomePage:
 
     @pytest.mark.parametrize("page", [
-        BasePageData.LOGIN_PAGE_URL,
-        BasePageData.FEED_PAGE_URL,
-        BasePageData.REGISTER_PAGE_URL,
-        BasePageData.FORGOT_PASSWORD_PAGE_URL
+        UrlLib.LOGIN_PAGE_URL,
+        UrlLib.FEED_PAGE_URL,
+        UrlLib.REGISTER_PAGE_URL,
+        UrlLib.FORGOT_PASSWORD_PAGE_URL
     ])
     def test_move_from_other_page_to_constructor_by_logo(
             self,
@@ -71,8 +72,9 @@ class TestHomePage:
         assert is_sum_more_than_zero, "Сумма в корзине не стала больше нуля после добавления ингредиента"
 
     def test_place_an_order_by_authorized_user(self, driver):
+        login_page = LoginPage(driver)
         home_page_obj = HomePage(driver)
-        order_number = home_page_obj.place_an_order_by_authorized_user(driver)
+        order_number = home_page_obj.place_an_order_by_authorized_user(driver, login_page)
 
         assert order_number is not None, "Заказ не оформлен, номер заказа не найден"
 

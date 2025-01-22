@@ -1,4 +1,4 @@
-from data import BasePageData
+from data import UrlLib
 from pages.base_page.base_page import BasePage
 from locators import BasePagePaths, FeedPagePaths, HomePagePaths, PersonalAccountPagePaths
 
@@ -20,7 +20,7 @@ class FeedPage(BasePage):
 
     # если кликнуть на заказ, откроется всплывающее окно с деталями
     def open_order_details_by_click_on_the_order_box(self):
-        self.driver.get(BasePageData.FEED_PAGE_URL)
+        self.driver.get(UrlLib.FEED_PAGE_URL)
 
         # нажимаем на плашку заказа
         self.click_on_the_element(FeedPagePaths.order_box)
@@ -48,7 +48,7 @@ class FeedPage(BasePage):
         history_tab_order_number_text = self.wait_element_to_be_visible(PersonalAccountPagePaths.last_order_number).text
 
         # перемещаемся на ленту заказов
-        self.move_to_order_feed_page(BasePageData.BASE_PAGE_URL)
+        self.move_to_order_feed_page(UrlLib.BASE_PAGE_URL)
 
         # забираем номер заказа из плашки заказа
         order_number_on_the_feed = f".//ul/li/a/div[1]/p[1][text()='{history_tab_order_number_text}']"  # номера заказов в ленте
@@ -69,7 +69,7 @@ class FeedPage(BasePage):
         self.click_on_the_element(HomePagePaths.close_order_button)
 
         # перемещаемся на ленту заказов
-        self.driver.get(BasePageData.FEED_PAGE_URL)
+        self.driver.get(UrlLib.FEED_PAGE_URL)
 
         # забираем номер заказа из плашки заказа
         self.scroll_to_element(FeedPagePaths.in_work_order_number)
@@ -87,12 +87,12 @@ class FeedPage(BasePage):
         return result
 
     def get_increased_counter_today_when_place_the_order(self, home_page_obj):
-        self.driver.get(BasePageData.FEED_PAGE_URL)
+        self.driver.get(UrlLib.FEED_PAGE_URL)
         self.scroll_to_element(FeedPagePaths.orders_completed_today)
         today_orders_before = self.wait_element_to_be_visible(FeedPagePaths.orders_completed_today).text
 
         home_page_obj.place_an_order_by_authorized_user(self.driver)
-        self.driver.get(BasePageData.FEED_PAGE_URL)
+        self.driver.get(UrlLib.FEED_PAGE_URL)
         today_orders_after = self.wait_element_to_be_visible(FeedPagePaths.orders_completed_today).text
 
         result = {
@@ -103,12 +103,12 @@ class FeedPage(BasePage):
         return result
 
     def get_increased_counter_all_time_when_place_the_order(self, home_page_obj):
-        self.driver.get(BasePageData.FEED_PAGE_URL)
+        self.driver.get(UrlLib.FEED_PAGE_URL)
         self.scroll_to_element(FeedPagePaths.orders_completed_all_the_time)
         all_time_orders_before = self.wait_element_to_be_visible(FeedPagePaths.orders_completed_all_the_time).text
 
         home_page_obj.place_an_order_by_authorized_user(self.driver)
-        self.driver.get(BasePageData.FEED_PAGE_URL)
+        self.driver.get(UrlLib.FEED_PAGE_URL)
         all_time_orders_after = self.wait_element_to_be_visible(FeedPagePaths.orders_completed_all_the_time).text
 
         result = {

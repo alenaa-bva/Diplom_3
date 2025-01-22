@@ -1,6 +1,6 @@
 import pytest
 
-from data import BasePageData
+from data import UrlLib
 from pages.feed_page.feed_page import FeedPage
 from pages.home_page.home_page import HomePage
 
@@ -9,10 +9,10 @@ class TestFeedPage:
 
     # переход по клику на кнопку лента заказов
     @pytest.mark.parametrize("page", [
-        BasePageData.LOGIN_PAGE_URL,
-        BasePageData.FEED_PAGE_URL,
-        BasePageData.REGISTER_PAGE_URL,
-        BasePageData.FORGOT_PASSWORD_PAGE_URL
+        UrlLib.LOGIN_PAGE_URL,
+        UrlLib.FEED_PAGE_URL,
+        UrlLib.REGISTER_PAGE_URL,
+        UrlLib.FORGOT_PASSWORD_PAGE_URL
     ])
     def test_move_to_order_feed_page(
             self,

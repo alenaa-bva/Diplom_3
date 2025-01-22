@@ -1,8 +1,7 @@
-from pages.registration_page.registration_page import RegistrationPage
-from locators import HomePagePaths, LoginPagePaths
-from tests.conftest import driver
-from data import BasePageData
+from data import UrlLib
+from locators import LoginPagePaths, HomePagePaths
 from pages.base_page.base_page import BasePage
+from pages.registration_page.registration_page import RegistrationPage
 
 
 class LoginPage(BasePage):
@@ -15,7 +14,7 @@ class LoginPage(BasePage):
         register_page = RegistrationPage(self)
         register_data = register_page.register()
 
-        self.driver.get(self, BasePageData.LOGIN_PAGE_URL)
+        self.driver.get(UrlLib.LOGIN_PAGE_URL)
 
         self.fill_the_field(LoginPagePaths.lp_email_input, register_data["login"])
         self.fill_the_field(LoginPagePaths.lp_password_input, register_data["password"])
