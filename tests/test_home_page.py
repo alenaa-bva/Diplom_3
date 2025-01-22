@@ -1,6 +1,6 @@
 import pytest
 
-from data import UrlLib
+from config import UrlLib
 from pages.home_page.home_page import HomePage
 from locators import HomePagePaths
 

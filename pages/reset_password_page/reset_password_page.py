@@ -1,4 +1,5 @@
-from data import UrlLib, LoginData
+from config import UrlLib
+from data import LoginData
 from pages.base_page.base_page import BasePage
 from locators import ForgotPasswordPagePaths
 from tests.conftest import driver

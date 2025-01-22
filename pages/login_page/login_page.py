@@ -1,4 +1,4 @@
-from data import UrlLib
+from config import UrlLib
 from locators import LoginPagePaths, HomePagePaths
 from pages.base_page.base_page import BasePage
 from pages.registration_page.registration_page import RegistrationPage

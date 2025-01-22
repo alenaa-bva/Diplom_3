@@ -1,6 +1,6 @@
-from data import UrlLib
+from config import UrlLib
 from pages.base_page.base_page import BasePage
-from tests.conftest import driver
+from pages.login_page.login_page import LoginPage
 from locators import LoginPagePaths, HomePagePaths, BasePagePaths, PersonalAccountPagePaths
 
 
@@ -10,20 +10,21 @@ class PersonalAccountPage(BasePage):
         super().__init__(driver)
         self.driver = driver
 
-    def move_to_the_personal_account_by_authorized_user(self, driver) -> bool:
-        self.login(driver)
+    def move_to_the_personal_account_by_authorized_user(self) -> bool:
+        login_page = LoginPage(self.driver)
+        login_page.login()
         self.click_on_the_element(BasePagePaths.personal_button)
 
         return self.wait_element_to_be_visible(PersonalAccountPagePaths.profile_tab).text
 
-    def move_to_the_personal_account_by_unauthorized_user(self, driver) -> str:
-        driver.get(UrlLib.BASE_PAGE_URL)
+    def move_to_the_personal_account_by_unauthorized_user(self) -> str:
+        self.driver.get(UrlLib.BASE_PAGE_URL)
         self.click_on_the_element(BasePagePaths.personal_button)
 
         return self.wait_element_to_be_visible(LoginPagePaths.login_header).text
 
-    def user_order_is_displayed_in_the_history_tab_when_the_order_placed(self, driver, home_page_obj) -> dict:
-        home_page_order_number = home_page_obj.place_an_order_by_authorized_user(driver)
+    def user_order_is_displayed_in_the_history_tab_when_the_order_placed(self, home_page_obj) -> dict:
+        home_page_order_number = home_page_obj.place_an_order_by_authorized_user()
         self.click_on_the_element(HomePagePaths.close_order_button)
         self.click_on_the_element(BasePagePaths.personal_button)
         self.click_on_the_element(PersonalAccountPagePaths.history_tab)
@@ -38,8 +39,9 @@ class PersonalAccountPage(BasePage):
 
         return order_number
 
-    def logout(self, driver):
-        self.login(driver)
+    def logout(self):
+        login_page = LoginPage(self.driver)
+        login_page.login()
         self.click_on_the_element(BasePagePaths.personal_button)
         self.click_on_the_element(PersonalAccountPagePaths.logout_button)
 

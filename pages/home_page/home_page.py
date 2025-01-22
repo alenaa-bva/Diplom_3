@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
-from data import UrlLib
+from config import UrlLib
 from pages.base_page.base_page import BasePage
 from pages.login_page.login_page import LoginPage
 from locators import HomePagePaths, BasePagePaths

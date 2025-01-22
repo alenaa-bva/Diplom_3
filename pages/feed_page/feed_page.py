@@ -1,4 +1,4 @@
-from data import UrlLib
+from config import UrlLib
 from pages.base_page.base_page import BasePage
 from locators import BasePagePaths, FeedPagePaths, HomePagePaths, PersonalAccountPagePaths
 
@@ -38,7 +38,7 @@ class FeedPage(BasePage):
     def get_order_on_the_feed_from_history(self, home_page_obj):
         # создаем заказ и копируем номер заказа из истории заказов в личном кабинете
 
-        home_page_obj.place_an_order_by_authorized_user(self.driver)
+        home_page_obj.place_an_order_by_authorized_user()
         self.click_on_the_element(HomePagePaths.close_order_button)
         self.click_on_the_element(BasePagePaths.personal_button)
         self.click_on_the_element(PersonalAccountPagePaths.history_tab)
@@ -65,7 +65,7 @@ class FeedPage(BasePage):
 
     def show_new_order_in_work_section(self, home_page_obj):
         # создаем заказ и копируем номер заказа
-        constructor_page_order_number_text = home_page_obj.place_an_order_by_authorized_user(self.driver)
+        constructor_page_order_number_text = home_page_obj.place_an_order_by_authorized_user()
         self.click_on_the_element(HomePagePaths.close_order_button)
 
         # перемещаемся на ленту заказов
@@ -91,7 +91,7 @@ class FeedPage(BasePage):
         self.scroll_to_element(FeedPagePaths.orders_completed_today)
         today_orders_before = self.wait_element_to_be_visible(FeedPagePaths.orders_completed_today).text
 
-        home_page_obj.place_an_order_by_authorized_user(self.driver)
+        home_page_obj.place_an_order_by_authorized_user()
         self.driver.get(UrlLib.FEED_PAGE_URL)
         today_orders_after = self.wait_element_to_be_visible(FeedPagePaths.orders_completed_today).text
 

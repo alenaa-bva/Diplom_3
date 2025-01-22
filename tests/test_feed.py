@@ -1,6 +1,6 @@
 import pytest
 
-from data import UrlLib
+from config import UrlLib
 from pages.feed_page.feed_page import FeedPage
 from pages.home_page.home_page import HomePage
 
