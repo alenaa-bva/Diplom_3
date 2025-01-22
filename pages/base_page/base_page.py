@@ -34,7 +34,7 @@ class BasePage:
 
     def fill_the_field(self, xpath, value):
         self.scroll_to_element(xpath)
-        self.wait_element_to_be_clickable(self.driver, xpath).send_keys(value)
+        self.wait_element_to_be_clickable(xpath).send_keys(value)
 
     def wait_element_to_be_clickable(self, xpath, timeout=10):
         return WebDriverWait(self.driver, timeout).until(expected_conditions.element_to_be_clickable((By.XPATH, xpath)))

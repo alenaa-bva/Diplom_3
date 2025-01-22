@@ -11,7 +11,7 @@ class LoginPage(BasePage):
 
     def login(self):
 
-        register_page = RegistrationPage(self)
+        register_page = RegistrationPage(self.driver)
         register_data = register_page.register()
 
         self.driver.get(UrlLib.LOGIN_PAGE_URL)

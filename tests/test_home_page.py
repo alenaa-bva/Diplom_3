@@ -3,7 +3,6 @@ import pytest
 from data import UrlLib
 from pages.home_page.home_page import HomePage
 from locators import HomePagePaths
-from pages.login_page.login_page import LoginPage
 
 
 class TestHomePage:
@@ -35,8 +34,7 @@ class TestHomePage:
             ingredient
     ):
         home_page_obj = HomePage(driver)
-        ingredient_details_modal_header_text = home_page_obj.open_ingredient_details_by_click_on_the_ingredient(driver,
-                                                                                                                ingredient)
+        ingredient_details_modal_header_text = home_page_obj.open_ingredient_details_by_click_on_the_ingredient(ingredient)
 
         assert ingredient_details_modal_header_text == 'Детали ингредиента', (
             f"Ошибка: Ожидался текст заголовка 'Детали ингредиента', но получен '{ingredient_details_modal_header_text}'")
@@ -52,7 +50,7 @@ class TestHomePage:
             ingredient
     ):
         home_page_obj = HomePage(driver)
-        is_modal_closed = home_page_obj.close_ingredient_details_by_click_on_the_cross(driver, ingredient)
+        is_modal_closed = home_page_obj.close_ingredient_details_by_click_on_the_cross(ingredient)
 
         assert is_modal_closed, "Модальное окно не закрылось после клика на крестик"
 
@@ -67,14 +65,13 @@ class TestHomePage:
             ingredient
     ):
         home_page_obj = HomePage(driver)
-        is_sum_more_than_zero = home_page_obj.add_ingredients_to_the_order_by_move_to_the_basket(driver, ingredient)
+        is_sum_more_than_zero = home_page_obj.add_ingredients_to_the_order_by_move_to_the_basket(ingredient)
 
         assert is_sum_more_than_zero, "Сумма в корзине не стала больше нуля после добавления ингредиента"
 
     def test_place_an_order_by_authorized_user(self, driver):
-        login_page = LoginPage(driver)
         home_page_obj = HomePage(driver)
-        order_number = home_page_obj.place_an_order_by_authorized_user(driver, login_page)
+        order_number = home_page_obj.place_an_order_by_authorized_user()
 
         assert order_number is not None, "Заказ не оформлен, номер заказа не найден"
 

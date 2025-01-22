@@ -107,7 +107,7 @@ class FeedPage(BasePage):
         self.scroll_to_element(FeedPagePaths.orders_completed_all_the_time)
         all_time_orders_before = self.wait_element_to_be_visible(FeedPagePaths.orders_completed_all_the_time).text
 
-        home_page_obj.place_an_order_by_authorized_user(self.driver)
+        home_page_obj.place_an_order_by_authorized_user()
         self.driver.get(UrlLib.FEED_PAGE_URL)
         all_time_orders_after = self.wait_element_to_be_visible(FeedPagePaths.orders_completed_all_the_time).text
 

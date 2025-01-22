@@ -4,7 +4,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from data import UrlLib
 from pages.base_page.base_page import BasePage
 from pages.login_page.login_page import LoginPage
-from tests.conftest import driver
 from locators import HomePagePaths, BasePagePaths
 
 
@@ -23,8 +22,8 @@ class HomePage(BasePage):
         # возвращаем текст хедера страницы
         return self.wait_element_to_be_visible(HomePagePaths.collect_a_burger_header).text
 
-    def open_ingredient_details_by_click_on_the_ingredient(self, driver, ingredient):
-        driver.get(UrlLib.BASE_PAGE_URL)
+    def open_ingredient_details_by_click_on_the_ingredient(self, ingredient):
+        self.driver.get(UrlLib.BASE_PAGE_URL)
 
         # кликнуть на ингредиент
         self.click_on_the_element(ingredient)
@@ -32,8 +31,8 @@ class HomePage(BasePage):
         # возвращаем заголовок Детали ингридиента
         return self.wait_element_to_be_visible(HomePagePaths.ingredient_details_modal_header).text
 
-    def close_ingredient_details_by_click_on_the_cross(self, driver, ingredient):
-        driver.get(UrlLib.BASE_PAGE_URL)
+    def close_ingredient_details_by_click_on_the_cross(self, ingredient):
+        self.driver.get(UrlLib.BASE_PAGE_URL)
 
         # кликнуть на ингредиент
         self.click_on_the_element(ingredient)
@@ -44,19 +43,20 @@ class HomePage(BasePage):
         # ждем закрытия модалки и возвращаем результат True или False
         return self.wait_element_not_visible(HomePagePaths.ingredient_details_modal_header)
 
-    def add_ingredients_to_the_order_by_move_to_the_basket(self, driver, ingredient):
-        driver.get(UrlLib.BASE_PAGE_URL)
+    def add_ingredients_to_the_order_by_move_to_the_basket(self, ingredient):
+        self.driver.get(UrlLib.BASE_PAGE_URL)
 
         # перетащить ингредиент
         self.drag_and_drop_element(ingredient, HomePagePaths.burger_basket_section)
 
         # ждем пока итоговая сумма не станет > 0
-        return WebDriverWait(driver, timeout=5).until(
+        return WebDriverWait(self.driver, timeout=5).until(
             lambda driver: int(driver.find_element(By.XPATH, HomePagePaths.total_counter).text) > 0)
 
-    def place_an_order_by_authorized_user(self, driver, login_page):
+    def place_an_order_by_authorized_user(self):
         # логинимся
 
+        login_page = LoginPage(self.driver)
         login_page.login()
 
         ingredients = [
